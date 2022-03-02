@@ -1,0 +1,25 @@
+Foundation Of Artificial Intelligence
+Lab 1
+Rutvik Pansare - rp2832@g.rit.edu
+
+Write Up:
+
+This write up consists of implementation of the cost function, the heuristic function and the justification of their correctness.
+
+1.Cost Function (Node.g): The cost function is the calculation of the total distance traveled from the start node to the current node. This is done by calculating the euclidian distance from the previous node to the    current node and also the path cost until the previous node added.
+
+       neighbor.cost = float(math.sqrt((((x - x1) * 10.29) ** 2) + (((y - y1) * 7.55) ** 2)) +
+                 (neighbor.elevation - currentNode.elevation) ** 2)
+       neighbor.g = currentNode.g + neighbor.cost
+
+Justification: The cost function in A* search algorithm is the cost the cost to reach a certain node from the starting node. Here the euclidian distance gives us the distance between the current node and previous node I.e., the neighbor.cost value and the neighbor.g is calculated by adding the distance from the starting node to to current node i.e., currentNode.g thus giving us the total cost of the whole path up till the next node which will be traversed.
+
+2.Heuristic Function (Node.h): The heuristic function is calculated by adding the Euclidian distance from the current node to the destination node with the land type co-efficient of the current node and the elevation at the current node.
+
+        Node.h =  src_elevation + landType + int(math.sqrt((((x1 - x) * 10.29) ** 2) + (((y1 - y) * 7.55) ** 2)
+              + ((src_elevation - dest_elevation) ** 2)))
+
+Justification: The heuristic function is a rough estimate about the path cost from the current node to the destination node. As the cost of the path is dependent on the land type(easy forest, pavement etc), elevation (downhill\uphill) and distance from the destination node, the heuristic function is calculated by considering all the three of these parameters i.e., “scr_elevation” for elevation, euclidian distance for the distance and “landType” constant to consider the type of path hence giving us a good estimate about the cost of taking that node or route to the end node.
+
+
+3.The euclidian distance is calculated by considering all the three dimensions i.e., x, y and z where z is the height or elevation at that particular pixel.
